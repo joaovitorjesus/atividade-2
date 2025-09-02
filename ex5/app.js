@@ -24,7 +24,7 @@ app.get("/produtos", (req, res) => {
 
     } catch (error) {
         console.error("Erro ao ler o arquivo produtos.json", error);
-        res.status(500).send("Erro interno no servidor");
+        res.status(500).json("Erro interno no servidor");
     }
 });
 
