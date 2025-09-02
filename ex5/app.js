@@ -3,37 +3,24 @@ const app = express();
 const PORT = 8081;
 const fs = require('fs');
 
-// Rota com path parameter
-app.get("/produtos/:pagina", (req, res) => {
+app.get("/produtos", (req, res) => {
     try {
-        const { pagina } = req.params; // pega o número da página
-        const page = parseInt(pagina);
+        const { nomeProduto } = req.query; // pega o parâmetro ?nomeProduto=...
 
-        // Ler o arquivo JSON
+        // Ler o arquivo JSON (corrigido extensão para .json)
         const data = fs.readFileSync('./produtos.json', 'utf-8');
+
+        // Conversão de JSON em objeto JS
         let produtos = JSON.parse(data);
 
-        // Definição de limite por página
-        const limite = 10;
-        let inicio, fim;
-
-        if (page === 1) {
-            inicio = 0;
-            fim = limite;
-        } else if (page === 2) {
-            inicio = 10;
-            fim = 20;
-        } else if (page === 3) {
-            inicio = 20;
-            fim = 30;
-        } else {
-            return res.status(400).send("Página inválida! Use 1, 2 ou 3.");
+        // Se o usuário mandou ?nomeProduto=...
+        if (nomeProduto) {
+            produtos = produtos.filter(produto =>
+                produto.nome.toLowerCase().includes(nomeProduto.toLowerCase())
+            );
         }
 
-        // Fatia os produtos de acordo com a página
-        const resultado = produtos.slice(inicio, fim);
-
-        res.status(200).json(resultado);
+        res.status(200).json(produtos);
 
     } catch (error) {
         console.error("Erro ao ler o arquivo produtos.json", error);
