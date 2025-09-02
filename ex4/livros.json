@@ -1,0 +1,7 @@
+[
+  { "id": 1, "titulo": "Dom Casmurro", "autor": "Machado de Assis", "ano": 1899 },
+  { "id": 2, "titulo": "Memórias Póstumas de Brás Cubas", "autor": "Machado de Assis", "ano": 1881 },
+  { "id": 3, "titulo": "O Primo Basílio", "autor": "Eça de Queirós", "ano": 1878 },
+  { "id": 4, "titulo": "Grande Sertão: Veredas", "autor": "João Guimarães Rosa", "ano": 1956 },
+  { "id": 5, "titulo": "Capitães da Areia", "autor": "Jorge Amado", "ano": 1937 }
+]
